@@ -1,0 +1,39 @@
+<div *ngIf="test!=null">
+    <h1 class="mb-3 display-4"> {{test.testTemplate.testTemplateName}} <small class="text-muted ">| <strong>{{test.testTemplate.testGroup.name}}</strong></small></h1>
+    <div class="container align-items-center row mb-4">
+        <div class="col-md-6">
+            <b>Candidate: </b> {{ test.candidate.user.firstName + " " + test.candidate.user.lastName }}
+            <br>
+            <b>Interviewer: </b> {{ test.interviewer.firstName + " " + test.interviewer.lastName }}
+            <br>
+            <b>Date: </b> {{ test.candidate.lastStatusUpdate | date }}
+        </div>
+        <div *ngIf="test.status===statuses.REVIEWED" class="col-md-3">
+            <p id="percent" class="font-weight-bold">{{ percent }}%</p>
+        </div>
+        <div *ngIf="test.status===statuses.REVIEWED" class="col-md-3">
+                <p class="display-3">
+                    <span class="font-weight-bold align-top points">{{points | number: '1.0-1'}}/</span>
+                    <small class="text-muted align-bottom">
+                        {{max}}<span id="pts">pts</span>
+                    </small>
+                </p>
+        </div>
+    </div>
+
+    <div class="container my-4">
+        <div *ngFor="let a of test.answers; let i = index" [attr.data-index]="i" class="card mb-1">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <div><b> {{i+1}}. </b> <u class="text-muted">{{ a.question.questionText }}</u> </div>
+                        <div class="container mt-2">
+                            {{ a.answerText }}
+                        </div>
+                    </div>
+                    <div *ngIf="test.status===statuses.REVIEWED" class="col-md-2 font-bold display-2"> {{a.score}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

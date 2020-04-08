@@ -1,0 +1,16 @@
+#percent {
+    font-size: 5rem;
+    color: green;
+}
+#pointsBorder {
+    border-bottom: 1px solid grey;
+}
+.points {
+    font-size: 5rem;
+}
+#pts {
+    font-size: 2rem;
+}
+.card {
+    background-color: #dfede2;
+}
